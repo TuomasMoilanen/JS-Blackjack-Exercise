@@ -13,7 +13,7 @@ function assembleDeck(){
     shuffle();
   }
   function shuffle(){
-    for (let i = 0; i < 100000; i++) {
+    for (let i = 0; i < 10000; i++) {
       let loc1 = Math.floor((Math.random() * deck.length));
       let loc2 = Math.floor((Math.random() * deck.length));
       let temp = deck[loc1];
