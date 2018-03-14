@@ -33,10 +33,9 @@ var totalPlayerCardSum;
 var totalDealerCardSum;
 var calculatorTurn = 1;
 var dealerCalculatorTurn = 2;
-var consoleTurn = 2;
 var dealerConsoleTurn = 2;
-var playerCardsCalculator;
-var dealerCardsCalculator;
+var playerCardsCalculator = [];
+var dealerCardsCalculator = [];
 var playerAcesLow = false;
 var dealerAcesLow = false;
 
@@ -80,6 +79,8 @@ function hitCards(){                                                            
   console.log("The player cards are: " + playerCards[0].Value + " of " +
   playerCards[0].Suit + ", " + playerCards[1].Value + " of " +
   playerCards[1].Suit);
+
+  var consoleTurn = 2;
 
   for(consoleTurn; consoleTurn <= turnNumber; consoleTurn++){
     console.log(", " + playerCards[consoleTurn].Value + " of " +
@@ -143,7 +144,6 @@ function standCards(){                                                          
   console.log("The house cards are: " + dealerCards[0].Value + " of " +
   dealerCards[0].Suit + ", " + dealerCards[1].Value + " of " +
   dealerCards[1].Suit);
-  dealerCardSum();
 
   if(dealerTurnNumber > 1){
     let dealerNewCard = deck.slice(0,1);
@@ -155,6 +155,7 @@ function standCards(){                                                          
     console.log(", " + dealerCards[dealerConsoleTurn].Value + " of " +
     dealerCards[dealerConsoleTurn].Suit);
   }
+  dealerCardSum();
 }
 
 function dealerCardSum(){                                                       //Calculates the total sum of the dealer cards
@@ -178,9 +179,9 @@ function dealerCardSum(){                                                       
   }
 
   if(dealerCalculatorTurn < dealerTurnNumber){
-    dealerCalculatorTurn++;
     totalDealerCardSum = totalDealerCardSum +
     dealerCardsCalculator[dealerCalculatorTurn].Value;
+    dealerCalculatorTurn++;
   }
   if(totalDealerCardSum > 21 && dealerAcesLow === false){
     for (var i = 0; i < dealerCards.length; i++){
@@ -219,16 +220,15 @@ function reset(){                                                               
   dealerTurnNumber = 0;
   calculatorTurn = 1;
   dealerCalculatorTurn = 1;
-  consoleTurn = 2;
   dealerConsoleTurn = 2;
   playerAcesLow = false;
   dealerAcesLow = false;
-  dealerCardsCalculator;
-  playerCardsCalculator;
+  dealerCardsCalculator = [];
+  playerCardsCalculator = [];
   totalPlayerCardSum;
   totalDealerCardSum;
   document.getElementById("dealButton").disabled = false;
   document.getElementById("hitButton").disabled = false;
   document.getElementById("standButton").disabled = false;
-  console.log("Game Reset.");
+  console.log("Game reset.");
 }
