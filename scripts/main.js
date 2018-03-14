@@ -33,7 +33,6 @@ var totalPlayerCardSum;
 var totalDealerCardSum;
 var calculatorTurn = 1;
 var dealerCalculatorTurn = 2;
-var dealerConsoleTurn = 2;
 var playerCardsCalculator = [];
 var dealerCardsCalculator = [];
 var playerAcesLow = false;
@@ -73,17 +72,13 @@ function hitCards(){                                                            
   turnNumber++;
 
   let newPlayerCards = deck.slice(0,1);
-  deck.shift;
-  playerCards.push(newPlayerCards[0]);
+  deck.shift();
+  playerCards.push(newPlayerCards[newPlayerCards.length - 1]);
 
-  console.log("The player cards are: " + playerCards[0].Value + " of " +
-  playerCards[0].Suit + ", " + playerCards[1].Value + " of " +
-  playerCards[1].Suit);
-
-  var consoleTurn = 2;
-
+  var consoleTurn = 0;
+  console.log("The player cards are: ");
   for(consoleTurn; consoleTurn <= turnNumber; consoleTurn++){
-    console.log(", " + playerCards[consoleTurn].Value + " of " +
+    console.log(playerCards[consoleTurn].Value + " of " +
     playerCards[consoleTurn].Suit);
   }
 
@@ -141,18 +136,17 @@ function standCards(){                                                          
   }
   dealerTurnNumber++;
   document.getElementById("hitButton").disabled = true;
-  console.log("The house cards are: " + dealerCards[0].Value + " of " +
-  dealerCards[0].Suit + ", " + dealerCards[1].Value + " of " +
-  dealerCards[1].Suit);
 
   if(dealerTurnNumber > 1){
     let dealerNewCard = deck.slice(0,1);
     deck.shift();
     dealerCards.push(dealerNewCard[0]);
   }
+  console.log("The house cards are: ");
+  var dealerConsoleTurn = 0;
   for(dealerConsoleTurn; dealerConsoleTurn <= dealerTurnNumber;
     dealerConsoleTurn++){
-    console.log(", " + dealerCards[dealerConsoleTurn].Value + " of " +
+    console.log(dealerCards[dealerConsoleTurn].Value + " of " +
     dealerCards[dealerConsoleTurn].Suit);
   }
   dealerCardSum();
